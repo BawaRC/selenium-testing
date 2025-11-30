@@ -8,14 +8,14 @@ import time
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 # Open the site
-driver.get("https://www.saucedemo.com/")
+driver.get("https://www.saucedemo.com/") # demo ecommerce website for automated data extraction testing
 
 # Wait for page to load
 time.sleep(2)
 
 # Login with demo credentials
-driver.find_element(By.ID, "user-name").send_keys("")
-driver.find_element(By.ID, "password").send_keys("")
+driver.find_element(By.ID, "user-name").send_keys("") # your demo login username 
+driver.find_element(By.ID, "password").send_keys("") #your demo login password
 driver.find_element(By.ID, "login-button").click()
 
 time.sleep(2)
@@ -25,7 +25,7 @@ time.sleep(2)
 product_names = driver.find_elements(By.CLASS_NAME, "inventory_item_name")
 product_prices = driver.find_elements(By.CLASS_NAME, "inventory_item_price")
 
-# Display data
+# Display data in terminal
 print("\n🛒 Available Products:\n")
 for name, price in zip(product_names, product_prices):
     print(f"{name.text} - {price.text}")
@@ -37,4 +37,5 @@ print("\n➡️ Viewing product details page:", driver.current_url)
 
 # Quit browser
 driver.quit()
+
 
